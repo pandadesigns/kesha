@@ -4,8 +4,8 @@
     <div class="uk-navbar-left">
     	<div class="uk-navbar-item">
             <form action="javascript:void(0)">
-                <input class="uk-input uk-form-width-small" type="text" placeholder="Search">
-                <button class="uk-button uk-button-default">
+                <input class="uk-input uk-form-width-small" type="text" placeholder="Search" id="search">
+                <button class="uk-button uk-button-default" id="search-button">
                 	<span uk-icon="icon:search"></span>
                 </button>
             </form>
@@ -31,43 +31,8 @@
     </div>
 </nav>
 
-<script>
-	var map;
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: {lat: -34.397, lng: 150.644},
-			zoom: 8
-		});
-		infoWindow = new google.maps.InfoWindow;
-		// HTML5 geolocation
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function(position) {
-				var pos = {
-					lat: position.coords.latitude,
-					lng: position.coords.longitude
-				};
-
-				infoWindow.setPosition(pos);
-				infoWindow.setContent('Location found.');
-				infoWindow.open(map);
-				map.setCenter(pos);
-			}, function() {
-				handleLocationError(true, infoWindow, map.getCenter());
-			});
-		} else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-      	}
-  	}
-  	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  		infoWindow.setPosition(pos);
-  		infoWindow.setContent(browserHasGeolocation ?
-  			'Error: The Geolocation service failed.' :
-  			'Error: Your browser doesn\'t support geolocation.');
-  		infoWindow.open(map);
-  	}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEUdH-NZb5-WYG7GVsnMM2rol0nqw0P9o&callback=initMap"
+<script src="app.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEUdH-NZb5-WYG7GVsnMM2rol0nqw0P9o&callback=initMap&libraries=places"
 async defer></script>
 
 <% include partials/footer %>
