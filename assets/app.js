@@ -53,9 +53,10 @@ function callback(results, status){
     	for (var i = 0; i < results.length; i++) {
 	    	var place = results[i];
 	    	infoWindow.setPosition(place.geometry.location);
-			infoWindow.setContent('Location found.');
+			infoWindow.setContent(place.name);
 			infoWindow.open(map);
 			map.setCenter(place.geometry.location);
+			map.setZoom(15);
     	}
   	}
 }
